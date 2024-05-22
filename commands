@@ -1,0 +1,5 @@
+get req = curl http://localhost:8000/books
+post req =  $JsonData = Get-Content body.json
+>> Invoke-RestMethod -Uri http://localhost:8000/books -Method Post -ContentType "application/json" -Body $JsonData
+
+
