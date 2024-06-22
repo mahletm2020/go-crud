@@ -1,5 +1,22 @@
 get req = curl http://localhost:8000/books
 post req =  $JsonData = Get-Content body.json
->> Invoke-RestMethod -Uri http://localhost:8000/books -Method Post -ContentType "application/json" -Body $JsonData
+ Invoke-RestMethod -Uri http://localhost:8000/books -Method Post -ContentType "application/json" -Body $JsonData
 
+if u dont have json file in another page u can use it like Invoke-WebRequest -Uri "http://localhost:8080/books" -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"id": "4", "title": "The Modern Sound of Betty Carter", "autor": "Betty Carter", "price": 49.99}'
+if explained for post req
+
+# Define the JSON data as a PowerShell string
+$jsonData = '{"id": "4", "title": "The Modern Sound of Betty Carter", "autor": "Betty Carter", "price": 49.99}'
+
+# Set the URI and method (POST)
+$uri = "http://localhost:8080/books"
+$method = "POST"
+
+# Set headers
+$headers = @{
+    "Content-Type" = "application/json"
+}
+
+# Send the request using Invoke-WebRequest
+Invoke-WebRequest -Uri $uri -Method $method -Headers $headers -Body $jsonData
 
