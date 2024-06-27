@@ -3,31 +3,8 @@ post req =  $JsonData = Get-Content body.json
  Invoke-RestMethod -Uri http://localhost:8000/books -Method Post -ContentType "application/json" -Body $JsonData
 
 if u dont have json file in another page u can use it like
- Invoke-WebRequest -Uri "http://localhost:8080/books" -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"id": "4", "title": "The Modern Sound of Betty Carter", "autor": "Betty Carter", "price": 49.99}'
-curl http://localhost:8080/albums \
-    --include \
-    --header "Content-Type: application/json" \
-    --request "POST" \
-    --data '{"id": "4","title": "The Modern Sound of Betty Carter","artist": "Betty Carter","price": 49.99}'
+ Invoke-WebRequest -Uri "http://localhost:8088/books" -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"id": "4", "title": " Betty Carter", "autor": " Carter", "price": 49}'
 
 
-
-if explained for post req
-
-# Define the JSON data as a PowerShell string
-$jsonData = '{"id": "4", "title": "The Modern Sound of Betty Carter", "autor": "Betty Carter", "price": 49.99}'
-
-# Set the URI and method (POST)
-$uri = "http://localhost:8080/books"
-$method = "POST"
-
-# Set headers
-$headers = @{
-    "Content-Type" = "application/json"
-}
-
-# Send the request using Invoke-WebRequest
-Invoke-WebRequest -Uri $uri -Method $method -Headers $headers -Body $jsonData
-
-
+delet command  in terminal  Invoke-RestMethod -Uri http://localhost:8088/books/1 -Method DELETE
 
