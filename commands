@@ -7,4 +7,24 @@ if u dont have json file in another page u can use it like
 
 
 delet command  in terminal  Invoke-RestMethod -Uri http://localhost:8088/books/1 -Method DELETE
+Register a User
+$signupBody = @{
+    username = "testuser"
+    password = "password123"
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://localhost:8088/signup" -Method Post -Body $signupBody -ContentType "application/json"
+
+Login to Get the JWT Token:
+$loginBody = @{
+    username = "testuser"
+    password = "password123"
+} | ConvertTo-Json
+
+$response = Invoke-RestMethod -Uri "http://localhost:8088/login" -Method Post -Body $loginBody -ContentType "application/json"
+$jwtToken = $response.token
+Write-Output "JWT Token: $jwtToken"
+
+Access Protected Endpoint:
+
 
